@@ -1,0 +1,6 @@
+{
+  "appId": "com.fundacion.app",
+  "appName": "FundacionApp",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

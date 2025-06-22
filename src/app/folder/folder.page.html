@@ -1,0 +1,130 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ pageId | titlecase }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container [ngSwitch]="pageId">
+
+    <!-- INICIO -->
+    <ng-container *ngSwitchCase="'inbox'">
+      <!-- <h2>Bienvenido a MiHoraFundación</h2>
+      <p>Desde aquí podrás gestionar tus citas, ver notificaciones y más.</p> -->
+        <app-profesional-card
+          nombre="Dra. Ana Gómez"
+          especialidad="Fonoaudiología">
+        </app-profesional-card>
+
+        <ion-button expand="block" color="primary" (click)="mostrarDetalleCita()">Agendar</ion-button>
+
+        <app-cita-detalle
+          *ngIf="mostrarDetalle"
+          [profesional]="'Dra. Ana Gómez'"
+          [fecha]="'2025-06-01'"
+          [hora]="'11:00'">
+        </app-cita-detalle>
+
+    </ng-container>
+
+    <!-- AGENDAR CITA -->
+    <ng-container *ngSwitchCase="'agendar'">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Selecciona Especialidad</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item button>Psicología Infantil</ion-item>
+            <ion-item button>Fonoaudiología</ion-item>
+            <ion-item button>Psiquiatría Infantil</ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Selecciona Hora</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item button>9:00</ion-item>
+            <ion-item button>11:00</ion-item>
+            <ion-item button>13:00</ion-item>
+            <ion-item button>15:00</ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button expand="block" color="primary" (click)="agendarCita()">Agendar</ion-button>
+
+    </ng-container>
+
+    <!-- PROFESIONALES -->
+    <ng-container *ngSwitchCase="'profesionales'">
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>Dr. Juan Pérez</h2>
+            <p>Psicólogo Infantil</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Dra. Ana Gómez</h2>
+            <p>Fonoaudióloga</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+    <!-- HISTORIAL -->
+    <ng-container *ngSwitchCase="'historial'">
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>Consulta con Psicólogo</h2>
+            <p>10 Abril 2024 - 11:00</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Sesión Fonoaudiología</h2>
+            <p>3 Mayo 2024 - 13:00</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+    <!-- NOTIFICACIONES -->
+    <ng-container *ngSwitchCase="'notificaciones'">
+      <ion-list>
+        <ion-item>Recordatorio: Cita mañana a las 9:00</ion-item>
+        <ion-item>Su pago fue confirmado</ion-item>
+      </ion-list>
+    </ng-container>
+
+    <!-- MI PERFIL -->
+    <ng-container *ngSwitchCase="'perfil'">
+      <p><strong>Nombre:</strong> Juan Pérez</p>
+      <p><strong>Correo:</strong> juan&#64;example.com</p>
+    </ng-container>
+
+    <!-- CERRAR SESIÓN -->
+    <ng-container *ngSwitchCase="'logout'">
+      <!-- <p>Has cerrado sesión.</p> -->
+        <ion-button expand="block" color="danger" (click)="confirmarCerrarSesion()">
+          Cerrar Sesión
+        </ion-button>
+
+    </ng-container>
+
+    <!-- DEFAULT -->
+    <ng-container *ngSwitchDefault>
+      <p>Sección no encontrada.</p>
+    </ng-container>
+
+  </ng-container>
+</ion-content>
